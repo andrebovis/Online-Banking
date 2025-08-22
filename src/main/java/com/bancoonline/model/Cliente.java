@@ -34,17 +34,17 @@ public class Cliente {
     @Column(nullable = false)
     private Boolean ativo;
 
-    // Relacionamento com Contas
+    
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Conta> contas = new ArrayList<>();
 
-    // Construtor padrão
+    
     public Cliente() {
         this.dataCadastro = LocalDateTime.now();
         this.ativo = true;
     }
 
-    // Construtor
+    
     public Cliente(String nome, String email, String senha, String cpf) {
         this();
         this.nome = nome;
@@ -126,7 +126,7 @@ public class Cliente {
         this.contas = contas;
     }
 
-    // Método para adicionar conta
+   
     public void adicionarConta(Conta conta) {
         this.contas.add(conta);
         conta.setCliente(this);

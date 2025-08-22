@@ -30,24 +30,24 @@ public class Conta {
     @Column(nullable = false)
     private Boolean ativa;
 
-    // Relacionamento com Cliente
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    // Enum para tipos de conta
+    
     public enum TipoConta {
         CORRENTE, POUPANCA, SALARIO
     }
 
-    // Construtor padrão
+    
     public Conta() {
         this.dataCriacao = LocalDateTime.now();
         this.ativa = true;
         this.saldo = BigDecimal.ZERO;
     }
 
-    // Construtor
+    
     public Conta(String numeroConta, String agencia, TipoConta tipo, Cliente cliente) {
         this();
         this.numeroConta = numeroConta;
@@ -56,7 +56,7 @@ public class Conta {
         this.cliente = cliente;
     }
 
-    // Getters e Setters
+   
     public Long getId() {
         return id;
     }
@@ -121,7 +121,7 @@ public class Conta {
         this.cliente = cliente;
     }
 
-    // Métodos de negócio
+ 
     public void depositar(BigDecimal valor) {
         if (valor.compareTo(BigDecimal.ZERO) > 0) {
             this.saldo = this.saldo.add(valor);
